@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+  /* Comedy-club roast stage palette */
+  --curtain: #2b0a0f;
+  --curtain-dark: #170406;
+  --spotlight: #f5c242;
+  --spotlight-dim: #a9862c;
+  --paper: #f2e8d8;
+  --roast-red: #e8402a;
+  --ink: #1a1210;
+  --smoke: #cdb9a8;
+}
+
+@theme inline {
+  --color-curtain: var(--curtain);
+  --color-curtain-dark: var(--curtain-dark);
+  --color-spotlight: var(--spotlight);
+  --color-spotlight-dim: var(--spotlight-dim);
+  --color-paper: var(--paper);
+  --color-roast-red: var(--roast-red);
+  --color-ink: var(--ink);
+  --color-smoke: var(--smoke);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+body {
+  background: var(--curtain);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
