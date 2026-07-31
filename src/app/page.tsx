@@ -23,7 +23,7 @@ export default function Home() {
       <section className="flex flex-1 flex-col items-center justify-center gap-10 px-4 py-16 text-center sm:py-24">
         <div className="space-y-4">
           <span className="font-display text-sm tracking-[0.4em] text-spotlight">
-            ONE NIGHT ONLY
+            Roast.me
           </span>
           <h1 className="font-display text-5xl leading-[0.95] tracking-wide text-paper sm:text-7xl">
             YOUR RESUME
