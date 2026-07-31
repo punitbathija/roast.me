@@ -15,6 +15,10 @@ export default function ResumeUpload() {
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const openFilePicker = useCallback(() => {
+    inputRef.current?.click();
+  }, []);
+
   const handleFile = useCallback(async (file: File) => {
     if (!isPdfFile(file)) {
       setStatus("error");
@@ -97,21 +101,20 @@ export default function ResumeUpload() {
         <input
           ref={inputRef}
           type="file"
-          accept="application/pdf"
+          accept="application/pdf,.pdf"
           onChange={onInputChange}
-          className="hidden"
+          className="sr-only"
           id="resume-input"
         />
 
         <AnimatePresence mode="wait">
           {status === "idle" && (
-            <motion.label
+            <motion.div
               key="idle"
-              htmlFor="resume-input"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex cursor-pointer flex-col items-center gap-3 text-center"
+              className="flex flex-col items-center gap-3 text-center"
             >
               <span className="font-display text-3xl tracking-wide text-ink sm:text-4xl">
                 Drop your resume on stage
@@ -119,10 +122,14 @@ export default function ResumeUpload() {
               <span className="text-sm text-ink/60">
                 PDF only. We read it so you don&apos;t have to relive it.
               </span>
-              <span className="mt-2 rounded-full bg-ink px-5 py-2 text-xs font-semibold uppercase tracking-widest text-paper">
+              <button
+                type="button"
+                onClick={openFilePicker}
+                className="mt-2 rounded-full bg-ink px-5 py-2 text-xs font-semibold uppercase tracking-widest text-paper transition-transform hover:scale-105"
+              >
                 Choose file
-              </span>
-            </motion.label>
+              </button>
+            </motion.div>
           )}
 
           {status === "reading" && (
