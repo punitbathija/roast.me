@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useSessionStorage } from "@/lib/useSessionStorage";
+import KokoroNarrator from "../../components/KokoroNarrator";
 
 export default function ResultPage() {
   const roast = useSessionStorage("roastme:roast");
@@ -97,6 +98,7 @@ export default function ResultPage() {
       <p className="max-w-sm text-center text-xs text-smoke/50">
         Sign in to save this one — coming soon.
       </p>
+      <KokoroNarrator text={roast} />
     </main>
   );
 }
