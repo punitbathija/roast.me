@@ -79,6 +79,13 @@ export default function KokoroNarrator({ text }: { text: string }) {
     return worker;
   };
 
+function sanitizeForSpeech(text: string): string {
+  return text
+    .replace(/\n+/g, ". ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+  
   const play = () => {
     setErrorMessage("");
 
@@ -99,7 +106,7 @@ export default function KokoroNarrator({ text }: { text: string }) {
     const id = crypto.randomUUID();
     pendingIdRef.current = id;
     setStatus("generating");
-    worker.postMessage({ type: "generate", id, text, voice });
+    worker.postMessage({ type: "generate", id, text: sanitizeForSpeech(text), voice });
   };
 
   const pause = () => {
